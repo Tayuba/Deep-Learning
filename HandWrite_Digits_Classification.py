@@ -45,7 +45,7 @@ model = tf.keras.Sequential([
     tf.keras.layers.Dense(10, input_shape=(784,), activation="sigmoid")
 ])
 model.compile(
-    optimizer="adam",
+    optimizer="SGD",
     loss="sparse_categorical_crossentropy",
     metrics=["accuracy"]
 )
@@ -59,7 +59,7 @@ print(test_accuracy)
 """Now i will predict """
 # I will view the first element in the digits data sets
 plt.matshow(x_test[0])
-# plt.show()
+plt.show()
 
 # Now predict the first image
 predicted_values = model.predict(x_test_flat)
@@ -84,12 +84,14 @@ model = tf.keras.Sequential([
     tf.keras.layers.Dense(10, activation="sigmoid")
 ])
 model.compile(
-    optimizer="adam",
+    optimizer="SGD",
     loss="sparse_categorical_crossentropy",
     metrics=["accuracy"]
 )
+tf_callback = tf.keras.callbacks.TensorBoard(log_dir="logs/", histogram_freq=1)
+
 # Now train the model
-model.fit(x_train_flat, y_train, epochs=10)
+model.fit(x_train_flat, y_train, epochs=10, callbacks=[tf_callback])
 
 # Evaluate accuracy on test data set
 test_accuracy = model.evaluate(x_test_flat, y_test)
