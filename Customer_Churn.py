@@ -1,6 +1,6 @@
 import tensorflow as tf
 import keras
-from tensorflow import keras
+from sklearn.metrics import confusion_matrix, classification_report
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sn
@@ -135,5 +135,26 @@ model.compile(
 # Train my model
 model.fit(x_train, y_train, epochs=100)
 
-# Evalluate the model
+# Evaluate the model
 print(model.evaluate(x_test, y_test))
+
+# Model predict
+y_pred = model.predict(x_test)
+
+
+
+# function of y predicted
+predicted = []
+def y_predicted(y):
+    for yd in y_pred:
+        if yd > 0.5:
+            predicted.append(1)
+        else:
+            predicted.append(0)
+
+y_predicted(y_pred)
+print(y_test[:10])
+print(predicted)
+
+# Classification report
+print(classification_report(y_test, predicted))
