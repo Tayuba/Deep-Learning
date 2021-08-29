@@ -151,7 +151,7 @@ def ANN(x_train, y_train, x_test, y_test, loss, weights, epochs):
 
 
 
-# ANN(x_train, y_train, x_test, y_test, "binary_crossentropy", -1)
+ANN(x_train, y_train, x_test, y_test, "binary_crossentropy", -1, 200)
 
 
 """Handling Imbalance in datasets, I will use all the various techniques in dealing with imbalance"""
@@ -179,7 +179,7 @@ x_train1, x_test1, y_train1, y_test1 = train_test_split(x, y, test_size=0.2, ran
 print(y_train1.value_counts())
 
 # Train my model with the new inputs and target values
-# ANN(x_train1, y_train1, x_test1, y_test1, "binary_crossentropy", -1, 200)
+ANN(x_train1, y_train1, x_test1, y_test1, "binary_crossentropy", -1, 200)
 
 
 """Second Technique, Over sampling """
@@ -206,7 +206,7 @@ x_train2, x_test2, y_train2, y_test2 = train_test_split(x, y, test_size=0.2, ran
 print(y_train2.value_counts())
 
 # Train my model with the new inputs and target values
-# ANN(x_train2, y_train2, x_test2, y_test2, "binary_crossentropy", -1, 200)
+ANN(x_train2, y_train2, x_test2, y_test2, "binary_crossentropy", -1, 200)
 
 """Third Technique, Over sampling by producing sythetic samples (SMOTE), this method uses KNN algorithms """
 # separating the dataframe into x and y sets
@@ -222,7 +222,7 @@ x_train3, x_test3, y_train3, y_test3 = train_test_split(x_smote, y_smote, test_s
 print(y_train3.value_counts())
 
 # Train my model with the new inputs and target values
-# ANN(x_train3, y_train3, x_test3, y_test3, "binary_crossentropy", -1, 200)
+ANN(x_train3, y_train3, x_test3, y_test3, "binary_crossentropy", -1, 200)
 
 
 """Fouth Technique, Use of Ensemble with undersampling"""
