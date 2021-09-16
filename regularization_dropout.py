@@ -5,6 +5,7 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 import tensorflow as tf
 from tensorflow import keras
+from sklearn.metrics import confusion_matrix, classification_report
 
 """Data exploration"""
 df = pd.read_csv("sonar.csv", header=None)
@@ -40,3 +41,53 @@ model = tf.keras.Sequential([
 
 model.compile(loss= "binary_crossentropy", optimizer="adam", metrics=["accuracy"])
 model.fit(x_train, y_train, epochs=100, batch_size=8)
+print()
+
+"""Evaluate the overfit model"""
+model.evaluate(x_test, y_test)
+
+"""Predict model"""
+y_pred = model.predict(x_test).reshape(-1)
+# print(y_pred)
+print()
+
+def round_up(y):
+    y_pred = np.round(y)
+    print(y_pred)
+    return y_pred
+# y_pred = round_up(y_pred)
+#
+# print(y_test[:10])
+
+# classify = classification_report(y_test, y_pred)
+# print(classify)
+
+"""Build Artificial neural network model with a droup layer"""
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(60, input_dim=60, activation="relu"),
+    tf.keras.layers.Dropout(0.5),
+    tf.keras.layers.Dense(30, activation="relu"),
+    tf.keras.layers.Dropout(0.2),
+    tf.keras.layers.Dense(15, activation="relu"),
+    tf.keras.layers.Dropout(0.3),
+    tf.keras.layers.Dense(1, activation="sigmoid")
+])
+
+model.compile(loss= "binary_crossentropy", optimizer="adam", metrics=["accuracy"])
+model.fit(x_train, y_train, epochs=100, batch_size=8)
+print()
+
+"""Evaluate the overfit model"""
+model.evaluate(x_test, y_test)
+
+y_pred = model.predict(x_test).reshape(-1)
+
+def round_up(y):
+    y_pred = np.round(y)
+    print(y_pred)
+    return y_pred
+
+y_pred = round_up(y_pred)
+
+classify = classification_report(y_test, y_pred)
+print(classify)
