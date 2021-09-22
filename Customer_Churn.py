@@ -155,6 +155,7 @@ ANN(x_train, y_train, x_test, y_test, "binary_crossentropy", -1, 200)
 
 
 """Handling Imbalance in datasets, I will use all the various techniques in dealing with imbalance"""
+
 """First Technique, Under sampling majority class"""
 count_class_0, count_class_1 = df.Churn.value_counts()
 print(count_class_0) # """checking the number of zeros in Churn"""
@@ -208,7 +209,7 @@ print(y_train2.value_counts())
 # Train my model with the new inputs and target values
 ANN(x_train2, y_train2, x_test2, y_test2, "binary_crossentropy", -1, 200)
 
-"""Third Technique, Over sampling by producing sythetic samples (SMOTE), this method uses KNN algorithms """
+"""Third Technique, Over sampling by producing synthetic samples (SMOTE), this method uses KNN algorithms """
 # separating the dataframe into x and y sets
 x = df.drop("Churn", axis="columns")
 y = df.Churn
